@@ -1,2 +1,2 @@
 # MyProject
-自己的库
+GameFrame框架使用
