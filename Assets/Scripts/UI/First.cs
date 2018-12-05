@@ -17,6 +17,6 @@ public class First : ProcedureBase
     {
         base.OnEnter(procedureOwner);
         UIComponent UI = UnityGameFramework.Runtime.GameEntry.GetComponent<UIComponent>();
-        UI.OpenUIForm("Assets/Prefab/Image.prefab", "UIFirst"); 
+        UI.OpenUIForm("Assets/Prefab/UI_Menu.prefab", "UIFirst"); 
     }
 }
