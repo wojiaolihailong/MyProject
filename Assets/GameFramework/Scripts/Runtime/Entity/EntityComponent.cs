@@ -26,8 +26,7 @@ namespace UnityGameFramework.Runtime
 
         private IEntityManager m_EntityManager = null;
         private EventComponent m_EventComponent = null;
-
-        private readonly List<IEntity> m_InternalEntityResultsCache = new List<IEntity>();
+        private List<IEntity> m_InternalEntityResultsCache = null;
 
         [SerializeField]
         private bool m_EnableShowEntitySuccessEvent = true;
@@ -103,6 +102,8 @@ namespace UnityGameFramework.Runtime
             m_EntityManager.ShowEntityUpdate += OnShowEntityUpdate;
             m_EntityManager.ShowEntityDependencyAsset += OnShowEntityDependencyAsset;
             m_EntityManager.HideEntityComplete += OnHideEntityComplete;
+
+            m_InternalEntityResultsCache = new List<IEntity>();
         }
 
         private void Start()
@@ -139,7 +140,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            entityHelper.name = "Entity Helper";
+            entityHelper.name = string.Format("Entity Helper");
             Transform transform = entityHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;
@@ -224,7 +225,7 @@ namespace UnityGameFramework.Runtime
                 return false;
             }
 
-            entityGroupHelper.name = Utility.Text.Format("Entity Group - {0}", entityGroupName);
+            entityGroupHelper.name = string.Format("Entity Group - {0}", entityGroupName);
             Transform transform = entityGroupHelper.transform;
             transform.SetParent(m_InstanceRoot);
             transform.localScale = Vector3.one;

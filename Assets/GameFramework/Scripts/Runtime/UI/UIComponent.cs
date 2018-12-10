@@ -25,8 +25,7 @@ namespace UnityGameFramework.Runtime
 
         private IUIManager m_UIManager = null;
         private EventComponent m_EventComponent = null;
-
-        private readonly List<IUIForm> m_InternalUIFormResultsCache = new List<IUIForm>();
+        private List<IUIForm> m_InternalUIFormResultsCache = null;
 
         [SerializeField]
         private bool m_EnableOpenUIFormSuccessEvent = true;
@@ -163,6 +162,8 @@ namespace UnityGameFramework.Runtime
             m_UIManager.OpenUIFormUpdate += OnOpenUIFormUpdate;
             m_UIManager.OpenUIFormDependencyAsset += OnOpenUIFormDependencyAsset;
             m_UIManager.CloseUIFormComplete += OnCloseUIFormComplete;
+
+            m_InternalUIFormResultsCache = new List<IUIForm>();
         }
 
         private void Start()
@@ -203,7 +204,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            uiFormHelper.name = "UI Form Helper";
+            uiFormHelper.name = string.Format("UI Form Helper");
             Transform transform = uiFormHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;
@@ -297,7 +298,7 @@ namespace UnityGameFramework.Runtime
                 return false;
             }
 
-            uiGroupHelper.name = Utility.Text.Format("UI Group - {0}", uiGroupName);
+            uiGroupHelper.name = string.Format("UI Group - {0}", uiGroupName);
             uiGroupHelper.gameObject.layer = LayerMask.NameToLayer("UI");
             Transform transform = uiGroupHelper.transform;
             transform.SetParent(m_InstanceRoot);

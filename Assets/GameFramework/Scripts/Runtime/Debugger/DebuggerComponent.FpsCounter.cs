@@ -5,6 +5,8 @@
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
 
+using GameFramework;
+
 namespace UnityGameFramework.Runtime
 {
     public partial class DebuggerComponent

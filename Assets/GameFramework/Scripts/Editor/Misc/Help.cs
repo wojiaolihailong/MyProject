@@ -5,7 +5,6 @@
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,7 +17,7 @@ namespace UnityGameFramework.Editor
     {
         public static void ShowComponentHelp(string componentName)
         {
-            ShowHelp(Utility.Text.Format("http://gameframework.cn/archives/category/module/buildin/{0}/", componentName));
+            ShowHelp(string.Format("http://gameframework.cn/archives/category/module/buildin/{0}/", componentName));
         }
 
         [MenuItem("Game Framework/Documentation", false, 90)]

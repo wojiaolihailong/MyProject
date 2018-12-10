@@ -6,35 +6,32 @@
 //------------------------------------------------------------
 
 using GameFramework;
-using UnityEngine;
+using System.Diagnostics;
 
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 版本号辅助器。
+    /// 性能分析工具集。
     /// </summary>
-    public class DefaultVersionHelper : Version.IVersionHelper
+    public static class ProfileUtility
     {
         /// <summary>
-        /// 获取游戏版本号。
+        /// 开始采样。
         /// </summary>
-        public string GameVersion
+        /// <param name="name">采样名称。</param>
+        [Conditional("ENABLE_PROFILER")]
+        public static void BeginSample(string name)
         {
-            get
-            {
-                return Application.version;
-            }
+            Utility.Profiler.BeginSample(name);
         }
 
         /// <summary>
-        /// 获取内部游戏版本号。
+        /// 结束采样。
         /// </summary>
-        public int InternalGameVersion
+        [Conditional("ENABLE_PROFILER")]
+        public static void EndSample()
         {
-            get
-            {
-                return 0;
-            }
+            Utility.Profiler.EndSample();
         }
     }
 }

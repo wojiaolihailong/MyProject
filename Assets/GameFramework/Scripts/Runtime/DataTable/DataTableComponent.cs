@@ -96,7 +96,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            dataTableHelper.name = "Data Table Helper";
+            dataTableHelper.name = string.Format("Data Table Helper");
             Transform transform = dataTableHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;

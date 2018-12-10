@@ -5,7 +5,6 @@
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
 using UnityEngine;
 
 namespace UnityGameFramework.Runtime
@@ -28,7 +27,7 @@ namespace UnityGameFramework.Runtime
 
             private string GetAccelerationEventString(AccelerationEvent accelerationEvent)
             {
-                return Utility.Text.Format("{0}, {1}", accelerationEvent.acceleration.ToString(), accelerationEvent.deltaTime.ToString());
+                return string.Format("{0}, {1}", accelerationEvent.acceleration.ToString(), accelerationEvent.deltaTime.ToString());
             }
 
             private string GetAccelerationEventsString(AccelerationEvent[] accelerationEvents)

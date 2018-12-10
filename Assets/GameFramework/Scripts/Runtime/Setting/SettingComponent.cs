@@ -48,7 +48,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            settingHelper.name = "Setting Helper";
+            settingHelper.name = string.Format("Setting Helper");
             Transform transform = settingHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;

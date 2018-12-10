@@ -5,7 +5,6 @@
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -21,7 +20,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
         private bool m_OrderBuildAssetBundles = false;
         private int m_BuildEventHandlerTypeNameIndex = 0;
 
-        [MenuItem("Game Framework/AssetBundle Tools/AssetBundle Builder", false, 41)]
+        [MenuItem("Game Framework/AssetBundle Tools/AssetBundle Builder", false, 31)]
         private static void Open()
         {
             AssetBundleBuilder window = GetWindow<AssetBundleBuilder>(true, "AssetBundle Builder", true);
@@ -239,7 +238,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
                     EditorGUILayout.BeginHorizontal();
                     {
                         EditorGUILayout.LabelField("Resource Version", GUILayout.Width(160f));
-                        GUILayout.Label(Utility.Text.Format("{0} ({1})", m_Controller.ApplicableGameVersion, m_Controller.InternalResourceVersion.ToString()));
+                        GUILayout.Label(string.Format("{0} ({1})", m_Controller.ApplicableGameVersion, m_Controller.InternalResourceVersion.ToString()));
                     }
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.BeginHorizontal();
@@ -378,7 +377,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
             messageType = MessageType.Info;
             if (Directory.Exists(m_Controller.OutputPackagePath))
             {
-                message += Utility.Text.Format("{0} will be overwritten.", m_Controller.OutputPackagePath);
+                message += string.Format("{0} will be overwritten.", m_Controller.OutputPackagePath);
                 messageType = MessageType.Warning;
             }
 
@@ -389,7 +388,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
                     message += " ";
                 }
 
-                message += Utility.Text.Format("{0} will be overwritten.", m_Controller.OutputFullPath);
+                message += string.Format("{0} will be overwritten.", m_Controller.OutputFullPath);
                 messageType = MessageType.Warning;
             }
 
@@ -400,7 +399,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
                     message += " ";
                 }
 
-                message += Utility.Text.Format("{0} will be overwritten.", m_Controller.OutputPackedPath);
+                message += string.Format("{0} will be overwritten.", m_Controller.OutputPackedPath);
                 messageType = MessageType.Warning;
             }
 
@@ -444,12 +443,12 @@ namespace UnityGameFramework.Editor.AssetBundleTools
 
         private void OnLoadingAssetBundle(int index, int count)
         {
-            EditorUtility.DisplayProgressBar("Loading AssetBundles", Utility.Text.Format("Loading AssetBundles, {0}/{1} loaded.", index.ToString(), count.ToString()), (float)index / count);
+            EditorUtility.DisplayProgressBar("Loading AssetBundles", string.Format("Loading AssetBundles, {0}/{1} loaded.", index.ToString(), count.ToString()), (float)index / count);
         }
 
         private void OnLoadingAsset(int index, int count)
         {
-            EditorUtility.DisplayProgressBar("Loading Assets", Utility.Text.Format("Loading assets, {0}/{1} loaded.", index.ToString(), count.ToString()), (float)index / count);
+            EditorUtility.DisplayProgressBar("Loading Assets", string.Format("Loading assets, {0}/{1} loaded.", index.ToString(), count.ToString()), (float)index / count);
         }
 
         private void OnLoadCompleted()
@@ -459,7 +458,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
 
         private void OnAnalyzingAsset(int index, int count)
         {
-            EditorUtility.DisplayProgressBar("Analyzing assets", Utility.Text.Format("Analyzing assets, {0}/{1} analyzed.", index.ToString(), count.ToString()), (float)index / count);
+            EditorUtility.DisplayProgressBar("Analyzing assets", string.Format("Analyzing assets, {0}/{1} analyzed.", index.ToString(), count.ToString()), (float)index / count);
         }
 
         private void OnAnalyzeCompleted()
@@ -469,7 +468,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
 
         private bool OnProcessingAssetBundle(string assetBundleName, float progress)
         {
-            if (EditorUtility.DisplayCancelableProgressBar("Processing AssetBundle", Utility.Text.Format("Processing '{0}'...", assetBundleName), progress))
+            if (EditorUtility.DisplayCancelableProgressBar("Processing AssetBundle", string.Format("Processing '{0}'...", assetBundleName), progress))
             {
                 EditorUtility.ClearProgressBar();
                 return true;
@@ -484,13 +483,13 @@ namespace UnityGameFramework.Editor.AssetBundleTools
         private void OnProcessAssetBundleComplete(Platform platform, string versionListPath, int versionListLength, int versionListHashCode, int versionListZipLength, int versionListZipHashCode)
         {
             EditorUtility.ClearProgressBar();
-            Debug.Log(Utility.Text.Format("Build AssetBundles for '{0}' complete, version list path is '{1}', length is '{2}', hash code is '{3}', zip length is '{4}', zip hash code is '{5}'.", platform.ToString(), versionListPath, versionListLength.ToString(), versionListHashCode.ToString("X8"), versionListZipLength.ToString(), versionListZipHashCode.ToString("X8")));
+            Debug.Log(string.Format("Build AssetBundles for '{0}' complete, version list path is '{1}', length is '{2}', hash code is '{3}', zip length is '{4}', zip hash code is '{5}'.", platform.ToString(), versionListPath, versionListLength.ToString(), versionListHashCode.ToString("X8"), versionListZipLength.ToString(), versionListZipHashCode.ToString("X8")));
         }
 
         private void OnBuildAssetBundlesError(string errorMessage)
         {
             EditorUtility.ClearProgressBar();
-            Debug.LogWarning(Utility.Text.Format("Build AssetBundles error with error message '{0}'.", errorMessage));
+            Debug.LogWarning(string.Format("Build AssetBundles error with error message '{0}'.", errorMessage));
         }
     }
 }

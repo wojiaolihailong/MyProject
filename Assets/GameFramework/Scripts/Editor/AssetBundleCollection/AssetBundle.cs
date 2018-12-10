@@ -5,7 +5,6 @@
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
 using System.Collections.Generic;
 
 namespace UnityGameFramework.Editor.AssetBundleTools
@@ -44,7 +43,7 @@ namespace UnityGameFramework.Editor.AssetBundleTools
         {
             get
             {
-                return Variant != null ? Utility.Text.Format("{0}.{1}", Name, Variant) : Name;
+                return Variant != null ? string.Format("{0}.{1}", Name, Variant) : Name;
             }
         }
 

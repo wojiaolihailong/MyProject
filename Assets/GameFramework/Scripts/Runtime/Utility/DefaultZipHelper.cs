@@ -12,7 +12,7 @@ using System.IO;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 默认压缩解压缩辅助器。
+    /// 压缩解压缩辅助器。
     /// </summary>
     public class DefaultZipHelper : Utility.Zip.IZipHelper
     {
@@ -28,7 +28,6 @@ namespace UnityGameFramework.Runtime
                 return bytes;
             }
 
-            byte[] result = null;
             MemoryStream memoryStream = null;
             try
             {
@@ -38,19 +37,7 @@ namespace UnityGameFramework.Runtime
                     gZipOutputStream.Write(bytes, 0, bytes.Length);
                 }
 
-                result = memoryStream.ToArray();
-
-                if (result.Length >= 8)
-                {
-                    result[4] = 25;
-                    result[5] = 134;
-                    result[6] = 2;
-                    result[7] = 32;
-                }
-            }
-            catch
-            {
-
+                return memoryStream.ToArray();
             }
             finally
             {
@@ -60,8 +47,6 @@ namespace UnityGameFramework.Runtime
                     memoryStream = null;
                 }
             }
-
-            return result;
         }
 
         /// <summary>
@@ -73,7 +58,7 @@ namespace UnityGameFramework.Runtime
         {
             if (bytes == null || bytes.Length <= 0)
             {
-                return null;
+                return bytes;
             }
 
             MemoryStream decompressedStream = null;
@@ -94,10 +79,6 @@ namespace UnityGameFramework.Runtime
                 }
 
                 return decompressedStream.ToArray();
-            }
-            catch
-            {
-                return null;
             }
             finally
             {

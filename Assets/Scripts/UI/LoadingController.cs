@@ -65,7 +65,6 @@ public class LoadingController : UguiForm
 
     #endregion
 
-
     #region 请求后返回事件
 
     /// <summary>
@@ -77,9 +76,9 @@ public class LoadingController : UguiForm
     {
         WebRequestSuccessEventArgs ne = (WebRequestSuccessEventArgs)e;
         // 获取回应的数据
-        string responseJson = Utility.Converter.GetString(ne.GetWebResponseBytes()); 
-         
-        GameFrameworkLog.Debug("responseJson：" + responseJson);
+        string responseJson = Utility.Converter.GetString(ne.GetWebResponseBytes());
+
+        Log.Debug("responseJson：" + responseJson);
 
         EnterMain();
     }
@@ -91,7 +90,7 @@ public class LoadingController : UguiForm
     /// <param name="e"></param>
     private void OnWebRequestFailure(object sender, GameEventArgs e)
     {
-        GameFrameworkLog.Warning("请求失败");
+        Log.Warning("请求失败");
     }
     #endregion
 

@@ -512,7 +512,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            m_ResourceHelper.name = "Resource Helper";
+            m_ResourceHelper.name = string.Format("Resource Helper");
             Transform transform = m_ResourceHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;
@@ -537,7 +537,7 @@ namespace UnityGameFramework.Runtime
             m_LastOperationElapse += Time.unscaledDeltaTime;
             if (m_AsyncOperation == null && (m_ForceUnloadUnusedAssets || m_PreorderUnloadUnusedAssets && m_LastOperationElapse >= m_UnloadUnusedAssetsInterval))
             {
-                Log.Info("Unload unused assets...");
+                Log.Debug("Unload unused assets...");
                 m_ForceUnloadUnusedAssets = false;
                 m_PreorderUnloadUnusedAssets = false;
                 m_LastOperationElapse = 0f;
@@ -549,7 +549,7 @@ namespace UnityGameFramework.Runtime
                 m_AsyncOperation = null;
                 if (m_PerformGCCollect)
                 {
-                    Log.Info("GC.Collect...");
+                    Log.Debug("GC.Collect...");
                     m_PerformGCCollect = false;
                     GC.Collect();
                 }
@@ -838,7 +838,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            loadResourceAgentHelper.name = Utility.Text.Format("Load Resource Agent Helper - {0}", index.ToString());
+            loadResourceAgentHelper.name = string.Format("Load Resource Agent Helper - {0}", index.ToString());
             Transform transform = loadResourceAgentHelper.transform;
             transform.SetParent(m_InstanceRoot);
             transform.localScale = Vector3.one;

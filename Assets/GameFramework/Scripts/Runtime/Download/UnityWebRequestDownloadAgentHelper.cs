@@ -5,6 +5,7 @@
 // Feedback: mailto:jiangyin@gameframework.cn
 //------------------------------------------------------------
 
+using GameFramework;
 using GameFramework.Download;
 using System;
 using System.Collections.Generic;
@@ -110,7 +111,7 @@ namespace UnityGameFramework.Runtime
             }
 
             Dictionary<string, string> header = new Dictionary<string, string>();
-            header.Add("Range", GameFramework.Utility.Text.Format("bytes={0}-", fromPosition.ToString()));
+            header.Add("Range", string.Format("bytes={0}-", fromPosition.ToString()));
             m_UnityWebRequest = UnityWebRequest.Post(downloadUri, header);
 #if UNITY_2017_2_OR_NEWER
             m_UnityWebRequest.SendWebRequest();
@@ -135,7 +136,7 @@ namespace UnityGameFramework.Runtime
             }
 
             Dictionary<string, string> header = new Dictionary<string, string>();
-            header.Add("Range", GameFramework.Utility.Text.Format("bytes={0}-{1}", fromPosition.ToString(), toPosition.ToString()));
+            header.Add("Range", string.Format("bytes={0}-{1}", fromPosition.ToString(), toPosition.ToString()));
             m_UnityWebRequest = UnityWebRequest.Post(downloadUri, header);
 #if UNITY_2017_2_OR_NEWER
             m_UnityWebRequest.SendWebRequest();

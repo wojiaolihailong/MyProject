@@ -22,24 +22,13 @@ namespace UnityGameFramework.Runtime
         private IEventManager m_EventManager = null;
 
         /// <summary>
-        /// 获取事件处理函数的数量。
-        /// </summary>
-        public int EventHandlerCount
-        {
-            get
-            {
-                return m_EventManager.EventHandlerCount;
-            }
-        }
-
-        /// <summary>
         /// 获取事件数量。
         /// </summary>
-        public int EventCount
+        public int Count
         {
             get
             {
-                return m_EventManager.EventCount;
+                return m_EventManager.Count;
             }
         }
 
@@ -64,21 +53,11 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取事件处理函数的数量。
+        /// 检查订阅事件处理回调函数。
         /// </summary>
         /// <param name="id">事件类型编号。</param>
-        /// <returns>事件处理函数的数量。</returns>
-        public int Count(int id)
-        {
-            return m_EventManager.Count(id);
-        }
-
-        /// <summary>
-        /// 检查是否存在事件处理函数。
-        /// </summary>
-        /// <param name="id">事件类型编号。</param>
-        /// <param name="handler">要检查的事件处理函数。</param>
-        /// <returns>是否存在事件处理函数。</returns>
+        /// <param name="handler">要检查的事件处理回调函数。</param>
+        /// <returns>是否存在事件处理回调函数。</returns>
         public bool Check(int id, EventHandler<GameEventArgs> handler)
         {
             return m_EventManager.Check(id, handler);

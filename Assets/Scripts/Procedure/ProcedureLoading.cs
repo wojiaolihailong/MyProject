@@ -18,7 +18,7 @@ public class ProcedureLoading : ProcedureBase
     protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
     {
         base.OnEnter(procedureOwner);
-        //UIComponent UI = UnityGameFramework.Runtime.GameEntry.GetComponent<UIComponent>();
-        //UI.OpenUIForm("Assets/Prefab/UI/Loading.prefab", "UIFirst");//注意路径要写清楚 
+        UIComponent UI = UnityGameFramework.Runtime.GameEntry.GetComponent<UIComponent>();
+       // UI.OpenUIForm("Assets/Prefab/UI/Loading.prefab", "UIFirst");//注意路径要写清楚 
     }  
 }

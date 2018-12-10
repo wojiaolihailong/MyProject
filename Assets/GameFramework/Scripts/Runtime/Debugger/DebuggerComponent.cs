@@ -284,25 +284,6 @@ namespace UnityGameFramework.Runtime
             return m_DebuggerManager.SelectDebuggerWindow(path);
         }
 
-        /// <summary>
-        /// 获取记录的全部日志。
-        /// </summary>
-        /// <param name="results">要获取的日志。</param>
-        public void GetRecentLogs(List<LogNode> results)
-        {
-            m_ConsoleWindow.GetRecentLogs(results);
-        }
-
-        /// <summary>
-        /// 获取记录的最近日志。
-        /// </summary>
-        /// <param name="results">要获取的日志。</param>
-        /// <param name="count">要获取最近日志的数量。</param>
-        public void GetRecentLogs(List<LogNode> results, int count)
-        {
-            m_ConsoleWindow.GetRecentLogs(results, count);
-        }
-
         private void DrawWindow(int windowId)
         {
             GUI.DragWindow(m_DragRect);
@@ -320,7 +301,7 @@ namespace UnityGameFramework.Runtime
             string[] debuggerWindowNames = debuggerWindowGroup.GetDebuggerWindowNames();
             for (int i = 0; i < debuggerWindowNames.Length; i++)
             {
-                names.Add(Utility.Text.Format("<b>{0}</b>", debuggerWindowNames[i]));
+                names.Add(string.Format("<b>{0}</b>", debuggerWindowNames[i]));
             }
 
             if (debuggerWindowGroup == m_DebuggerManager.DebuggerWindowRoot)
@@ -332,11 +313,6 @@ namespace UnityGameFramework.Runtime
             if (toolbarIndex >= debuggerWindowGroup.DebuggerWindowCount)
             {
                 m_ShowFullWindow = false;
-                return;
-            }
-
-            if (debuggerWindowGroup.SelectedWindow == null)
-            {
                 return;
             }
 
@@ -353,7 +329,10 @@ namespace UnityGameFramework.Runtime
                 DrawDebuggerWindowGroup(subDebuggerWindowGroup);
             }
 
-            debuggerWindowGroup.SelectedWindow.OnDraw();
+            if (debuggerWindowGroup.SelectedWindow != null)
+            {
+                debuggerWindowGroup.SelectedWindow.OnDraw();
+            }
         }
 
         private void DrawDebuggerWindowIcon(int windowId)
@@ -379,7 +358,7 @@ namespace UnityGameFramework.Runtime
                 color = m_ConsoleWindow.GetLogStringColor(LogType.Log);
             }
 
-            string title = Utility.Text.Format("<color=#{0}{1}{2}{3}><b>FPS: {4}</b></color>", color.r.ToString("x2"), color.g.ToString("x2"), color.b.ToString("x2"), color.a.ToString("x2"), m_FpsCounter.CurrentFps.ToString("F2"));
+            string title = string.Format("<color=#{0}{1}{2}{3}><b>FPS: {4}</b></color>", color.r.ToString("x2"), color.g.ToString("x2"), color.b.ToString("x2"), color.a.ToString("x2"), m_FpsCounter.CurrentFps.ToString("F2"));
             if (GUILayout.Button(title, GUILayout.Width(100f), GUILayout.Height(40f)))
             {
                 m_ShowFullWindow = true;

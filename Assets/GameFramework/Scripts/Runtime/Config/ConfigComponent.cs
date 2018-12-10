@@ -105,7 +105,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            configHelper.name = "Config Helper";
+            configHelper.name = string.Format("Config Helper");
             Transform transform = configHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;

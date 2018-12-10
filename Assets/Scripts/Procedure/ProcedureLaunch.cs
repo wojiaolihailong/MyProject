@@ -9,23 +9,22 @@ using System.Collections.Generic;
 using GameFramework;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
-using UnityEngine;
+using UnityEngine; 
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
-public class ProcedureLaunch : ProcedureBase 
+public class ProcedureLaunch : ProcedureBase
 {
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
 
-        GameFrameworkLog.Info("开始");  
+        Log.Info("开始");
 
-        SceneComponent scene = UnityGameFramework.Runtime.GameEntry.GetComponent<SceneComponent>();
-
-        // 切换场景
-        procedureOwner.SetData<VarString>("NextSceneName", "Loading"); 
+        SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
+        scene.LoadScene("Loading", this);
+        Log.Debug(scene.SceneIsLoading("Loading")); 
         // 切换流程
-        ChangeState<ProcedureLoading>(procedureOwner);
+      // ChangeState<ProcedureLoading>(procedureOwner);
     }
 }
