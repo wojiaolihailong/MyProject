@@ -31,7 +31,7 @@ public class Form
 
 
 
-public class LoadingController : UguiForm
+public class LoadingController : UGuiForm
 {
 
     public InputField _NameInp;
@@ -41,7 +41,7 @@ public class LoadingController : UguiForm
 
     private void Awake()
     {
-        UIComponent UI = GameEntry.GetComponent<UIComponent>();
+        //UIComponent UI = GameEntry.GetComponent<UIComponent>();
 
 
         _OkButton.onClick.AddListener(() =>
@@ -51,7 +51,7 @@ public class LoadingController : UguiForm
 
         _setting.onClick.AddListener(() =>
         {
-            UI.OpenUIForm("","");
+            GameEntry.UI.OpenUIForm(UIFormName.Setting, "UIGroup"); 
         });
 
 
@@ -88,8 +88,8 @@ public class LoadingController : UguiForm
         // 获取回应的数据
         string responseJson = Utility.Converter.GetString(ne.GetWebResponseBytes());
 
-        Log.Debug("responseJson：" + responseJson);
-
+        GameFrameworkLog.Debug("responseJson：" + responseJson);
+          
         EnterMain();
     }
 
@@ -100,7 +100,7 @@ public class LoadingController : UguiForm
     /// <param name="e"></param>
     private void OnWebRequestFailure(object sender, GameEventArgs e)
     {
-        Log.Warning("请求失败");
+        GameFrameworkLog.Warning("请求失败");
     }
     #endregion
 
@@ -111,15 +111,15 @@ public class LoadingController : UguiForm
     protected void EnterMain()
     {
         // 获取框架场景组件
-        SceneComponent scene = UnityGameFramework.Runtime.GameEntry.GetComponent<SceneComponent>();
+         
         // 卸载所有场景
-        string[] loadedSceneAssetNames = scene.GetLoadedSceneAssetNames();
+        string[] loadedSceneAssetNames =GameEntry.Scene.GetLoadedSceneAssetNames();
         for (int i = 0; i < loadedSceneAssetNames.Length; i++)
         {
-            scene.UnloadScene(loadedSceneAssetNames[i]);
+            GameEntry.Scene.UnloadScene(loadedSceneAssetNames[i]);
         }
         // 加载游戏场景
-        scene.LoadScene("Assets/Scenes/Main.unity", this);
+        GameEntry.Scene.LoadScene("Assets/Scenes/Main.unity", this);
     }
     #endregion
 

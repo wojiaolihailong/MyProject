@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class UguiForm : UIFormLogic 
+public class UGuiForm : UIFormLogic 
 { 
      
 

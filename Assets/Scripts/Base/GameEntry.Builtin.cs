@@ -3,7 +3,7 @@
 /// <summary>
 /// 游戏入口。
 /// </summary>
-public partial class DemoSF_GameEntry {
+public partial class GameEntry {
     /// <summary>
     /// 获取游戏基础组件。
     /// </summary>

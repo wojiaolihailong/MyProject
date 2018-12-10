@@ -16,8 +16,8 @@ public class First : ProcedureBase
         //UIComponent UI = UnityGameFramework.Runtime.GameEntry.GetComponent<UIComponent>();
         //UI.OpenUIForm("Assets/Prefab/UI_Menu.prefab", "UIFirst"); 
 
-        SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
+
         // 加载游戏场景
-        scene.LoadScene("Main", this);
+        GameEntry.Scene.LoadScene("Main", this);
     }
 }

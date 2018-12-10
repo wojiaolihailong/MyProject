@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainController : UguiForm 
+public class MainController : UGuiForm
 { 
 	 
 }
