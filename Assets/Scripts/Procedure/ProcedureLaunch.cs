@@ -19,12 +19,16 @@ public class ProcedureLaunch : ProcedureBase
     {
         base.OnEnter(procedureOwner);
 
-        Log.Info("开始");
+        GameFrameworkLog.Info("开始");
 
         SceneComponent scene = GameEntry.GetComponent<SceneComponent>();
-        scene.LoadScene("Loading", this);
-        Log.Debug(scene.SceneIsLoading("Loading")); 
+
+
+
+
+        //跳转场景
+        scene.LoadScene("Assets/Scenes/Loading.unity", this);
         // 切换流程
-      // ChangeState<ProcedureLoading>(procedureOwner);
+       ChangeState<ProcedureLoading>(procedureOwner);
     }
 }

@@ -512,7 +512,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            m_ResourceHelper.name = string.Format("Resource Helper");
+            m_ResourceHelper.name = "Resource Helper";
             Transform transform = m_ResourceHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;
@@ -537,7 +537,7 @@ namespace UnityGameFramework.Runtime
             m_LastOperationElapse += Time.unscaledDeltaTime;
             if (m_AsyncOperation == null && (m_ForceUnloadUnusedAssets || m_PreorderUnloadUnusedAssets && m_LastOperationElapse >= m_UnloadUnusedAssetsInterval))
             {
-                Log.Debug("Unload unused assets...");
+                Log.Info("Unload unused assets...");
                 m_ForceUnloadUnusedAssets = false;
                 m_PreorderUnloadUnusedAssets = false;
                 m_LastOperationElapse = 0f;
@@ -549,7 +549,7 @@ namespace UnityGameFramework.Runtime
                 m_AsyncOperation = null;
                 if (m_PerformGCCollect)
                 {
-                    Log.Debug("GC.Collect...");
+                    Log.Info("GC.Collect...");
                     m_PerformGCCollect = false;
                     GC.Collect();
                 }
@@ -759,6 +759,18 @@ namespace UnityGameFramework.Runtime
         /// <param name="userData">用户自定义数据。</param>
         public void LoadAsset(string assetName, Type assetType, int priority, LoadAssetCallbacks loadAssetCallbacks, object userData)
         {
+            if (string.IsNullOrEmpty(assetName))
+            {
+                Log.Error("Asset name is invalid.");
+                return;
+            }
+
+            if (!assetName.StartsWith("Assets/"))
+            {
+                Log.Error("Asset name '{0}' is invalid.", assetName);
+                return;
+            }
+
             m_ResourceManager.LoadAsset(assetName, assetType, priority, loadAssetCallbacks, userData);
         }
 
@@ -838,7 +850,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            loadResourceAgentHelper.name = string.Format("Load Resource Agent Helper - {0}", index.ToString());
+            loadResourceAgentHelper.name = Utility.Text.Format("Load Resource Agent Helper - {0}", index.ToString());
             Transform transform = loadResourceAgentHelper.transform;
             transform.SetParent(m_InstanceRoot);
             transform.localScale = Vector3.one;

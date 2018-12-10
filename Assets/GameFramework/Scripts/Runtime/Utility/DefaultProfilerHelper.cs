@@ -11,11 +11,11 @@ using System.Threading;
 namespace UnityGameFramework.Runtime
 {
     /// <summary>
-    /// 性能分析辅助器。
+    /// 默认性能分析辅助器。
     /// </summary>
     public class DefaultProfilerHelper : Utility.Profiler.IProfilerHelper
     {
-        private Thread m_MainThread = null;
+        private readonly Thread m_MainThread = null;
 
         /// <summary>
         /// 初始化性能分析辅助器的新实例。

@@ -37,14 +37,24 @@ public class LoadingController : UguiForm
     public InputField _NameInp;
     public InputField _PasswordInp;
     public Button _OkButton;
+    public Button _setting;
 
     private void Awake()
     {
+        UIComponent UI = GameEntry.GetComponent<UIComponent>();
+
+
         _OkButton.onClick.AddListener(() =>
         {
             Get();//请求服务器认证
         });
-       
+
+        _setting.onClick.AddListener(() =>
+        {
+            UI.OpenUIForm("","");
+        });
+
+
     }
 
     #region 填用户名密码请求认证
@@ -109,7 +119,7 @@ public class LoadingController : UguiForm
             scene.UnloadScene(loadedSceneAssetNames[i]);
         }
         // 加载游戏场景
-        scene.LoadScene("Main", this);
+        scene.LoadScene("Assets/Scenes/Main.unity", this);
     }
     #endregion
 
